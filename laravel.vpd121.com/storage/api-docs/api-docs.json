@@ -58,6 +58,81 @@
                 }
             }
         },
+        "/api/category/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "operationId": "b5e0594038139a2979e671987221c993",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ідентифікатор категорії",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List Categories."
+                    },
+                    "404": {
+                        "description": "Wrong id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong Category Id has been sent. Pls try another one."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Category"
+                ],
+                "operationId": "d2437e8e0e200592efe7305af1c302d7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Ідентифікатор категорії",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Успішне видалення категорії"
+                    },
+                    "404": {
+                        "description": "Категорії не знайдено"
+                    },
+                    "401": {
+                        "description": "Не авторизований"
+                    }
+                }
+            }
+        },
         "/api/category/edit/{id}": {
             "post": {
                 "tags": [
@@ -106,33 +181,50 @@
                 }
             }
         },
-        "/api/category/{id}": {
-            "delete": {
+        "/api/product": {
+            "get": {
                 "tags": [
-                    "Category"
+                    "Product"
                 ],
-                "operationId": "d2437e8e0e200592efe7305af1c302d7",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Ідентифікатор категорії",
-                        "required": true,
-                        "schema": {
-                            "type": "number",
-                            "format": "int64"
-                        }
-                    }
-                ],
+                "operationId": "5cc57bec35d0f2045983cc8dcd00eccd",
                 "responses": {
                     "200": {
-                        "description": "Успішне видалення категорії"
-                    },
-                    "404": {
-                        "description": "Категорії не знайдено"
-                    },
-                    "401": {
-                        "description": "Не авторизований"
+                        "description": "Get All Products."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Product"
+                ],
+                "operationId": "a2a748b2864d35d1e50976b938ba8cd9",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "required": [],
+                                "properties": {
+                                    "category_id": {
+                                        "type": "number"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "number"
+                                    },
+                                    "decsription": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Add Product."
                     }
                 }
             }

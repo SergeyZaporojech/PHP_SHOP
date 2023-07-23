@@ -12,14 +12,14 @@ const CategoryEditPage = () => {
     //Фото, яке мав товар під час виводу на екран
     const [oldImage, setOldImage] = useState<string>("");
 
-    const init : ICategoryEdit = {
+    const init : ICategoryEdit = {   //створюємо нульову категорію
         id: 0,
         name: "",
         image: null,
         description: ""
     };
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // створюємо хук useNavigator
     const onFormikSubmit = async (values: ICategoryEdit) => {
         try {
             const result =

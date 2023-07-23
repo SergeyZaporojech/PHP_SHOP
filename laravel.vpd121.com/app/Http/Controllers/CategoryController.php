@@ -165,7 +165,7 @@ class CategoryController extends Controller
             'name.required' => 'Вкажіть назву категорії',
             'description.required' => 'Вкажіть опис категорії',
         );
-        $validation = Validator::make($input, [
+        $validation = Validator::make($input, [       //валідуємо введенні данні
             'name' => 'required',
             'description' => 'required',
         ], $message);
